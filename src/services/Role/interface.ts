@@ -24,4 +24,10 @@ export interface IRoleService {
      * @memberof IRoleService
      */
       create(role: RoleTo): Promise<Role>;
+
+    /**
+     * @returns {Promise<any[]>}
+     * @memberof IRoleService
+     */
+     del(id: number): Promise<void>;
 }

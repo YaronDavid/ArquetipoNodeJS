@@ -40,7 +40,19 @@ const RoleService: IRoleService = {
     async create(role: RoleTo): Promise<Role> {
         let roleModel = await Role.create(role)
         return roleModel;
-    }
+    },
+
+    /** 
+     * @returns {Promise < any[] >}
+     * @memberof RoleFacade
+     */
+    async del(id: number): Promise<void> {
+        Role.destroy({
+            where: {
+                id:id
+            }
+        });
+    },
 
 }
 

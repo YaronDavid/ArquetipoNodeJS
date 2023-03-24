@@ -75,6 +75,42 @@ router.post('/roles', RoleFacade.save)
  */
 router.get('/roles/', RoleFacade.findAll);
 
+
+/**
+ * DELETE method route
+ * @example http://localhost:PORT/roles
+ * @swagger
+ * /roles/{id}/id:
+ *  delete:
+ *    description: delete Roles
+ *    tags: ["Roles"]
+ *    parameters : [
+ *          {
+ *              name: 'id',
+ *              in: 'path',
+ *              schema: {
+ *                  type: number,
+ *                  example: 1
+ *              },
+ *              required: true
+ *          }
+ *    ]
+ *    responses:
+ *      200:
+ *        description: All Users
+ *      400:
+ *        description: Error bad parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ErrorTo'
+ */
+
+router.delete('/roles/:id/id', RoleFacade.publish)
+
+
+
+
 /**
  * @export {express.Router}
  */

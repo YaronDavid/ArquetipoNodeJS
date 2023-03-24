@@ -85,6 +85,40 @@
         }
       }
     },
+    "/roles/{id}/id": {
+      "delete": {
+        "description": "delete Roles",
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number",
+              "example": 1
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All Users"
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "description": "Get all Users",

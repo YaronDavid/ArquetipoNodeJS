@@ -18,4 +18,16 @@ export interface IRoleFacade {
      */
     create(role:RoleTo): Promise<RoleTo>;
 
+    /**
+     * @returns {Promise<any[]>}
+     * @memberof IRoleFacade
+     */
+    publish(id: number): Promise<void>;
+
+    /**
+     * @returns {Promise<any[]>}
+     * @memberof IRoleFacade
+     */
+    consumer(id: number): Promise<void>;
+
 }

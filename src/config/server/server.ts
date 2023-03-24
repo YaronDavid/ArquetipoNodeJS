@@ -5,7 +5,7 @@ import { db } from '../connection/database';
 import * as Kafka from "../stream/kafka";
 import { UserService } from '../../services';
 import  UserFacade  from '../../facade/User/facade';
-
+import RoleFacade from '../../facade/Role/facade';
 
 /**
  * @constant {express.Application}
@@ -43,6 +43,9 @@ Kafka.init(allTopics).then(async() => {
         console.log('Topic: ', topic, 'Partition: ',partition, 'Message: ',message?.value?.toString())
         if(topic=== 'user-service-topic'){
             UserFacade.consumer(Number(message?.value?.toString()));
+        }
+        if(topic=== 'role-service-topic'){
+            RoleFacade.consumer(Number(message?.value?.toString()));
         }
     });
     console.log('Connected to Kafka');

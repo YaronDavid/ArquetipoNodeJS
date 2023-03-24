@@ -37,3 +37,23 @@ export async function save(req: Request, res: Response, next: NextFunction): Pro
         next(error);
     }
 }
+
+/**
+ * @export
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Promise < void >}
+ */
+export async function publish(req: Request, res: Response, next: NextFunction): Promise < void > {
+    try {
+        const {
+            params: {id}
+        } = req
+        logger.info("(%s) - Request delete: %s","RoleRouter.ts", id);
+        await RoleFacade.publish(Number(id));
+        res.status(HttpStatusCode.OK).json("");
+    } catch (error) {
+        next(error);
+    }
+}
