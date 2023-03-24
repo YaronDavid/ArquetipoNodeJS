@@ -121,7 +121,7 @@ router.delete('/users/:id/id', UserFacade.publish)
  *      content:
  *          application/json:
  *            schema: 
- *              $ref: '#/components/schemas/UserTo'
+ *              $ref: '#/components/schemas/UserTO'
  *    parameters : [
  *          {
  *              name: 'id',
