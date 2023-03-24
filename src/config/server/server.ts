@@ -3,6 +3,9 @@ import * as Middleware from '../interceptors/middleware';
 import * as Routes from '../../api';
 import { db } from '../connection/database';
 import * as Kafka from "../stream/kafka";
+import { UserService } from '../../services';
+import  UserFacade  from '../../facade/User/facade';
+
 
 /**
  * @constant {express.Application}
@@ -28,22 +31,23 @@ db.authenticate()
 .catch(err => console.error('Error connecting database', err))
 
 // initialize Kafka
-// let allTopics = [
-//     'pruebas',
-//     'test'
-// ];
-// let topicsToSubscribe = [
-//     'pruebas',
-//     'test'
-// ];
-// Kafka.init(allTopics).then(async() => {
+let allTopics = [
+    'user-service'
+];
+let topicsToSubscribe = [
+    'user-service'
+];
+Kafka.init(allTopics).then(async() => {
 
-//     await Kafka.suscribe(topicsToSubscribe, (topic: any, partition: any, message: any)=>{
-//         console.log('Topic: ', topic, 'Partition: ',partition, 'Message: ',message?.value?.toString())
-//     });
-//     console.log('Connected to Kafka');
-// })
-// .catch(err => console.error('Error connecting kafka', err))
+    await Kafka.suscribe(topicsToSubscribe, (topic: any, partition: any, message: any)=>{
+        console.log('Topic: ', topic, 'Partition: ',partition, 'Message: ',message?.value?.toString())
+        if(topic=== 'user-service-topic'){
+            UserFacade.consumer(Number(message?.value?.toString()));
+        }
+    });
+    console.log('Connected to Kafka');
+})
+.catch(err => console.error('Error connecting kafka', err))
 
 /**
  * @constructs express.Application Error Handler
