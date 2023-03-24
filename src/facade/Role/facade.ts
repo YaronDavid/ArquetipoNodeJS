@@ -9,6 +9,15 @@ import { IRoleFacade } from "./interface";
  */
 const RoleFacade: IRoleFacade = {
 
+    /**
+     * @returns {Promise < any[] >}
+     * @memberof UserFacade
+     */
+    async findAll(): Promise<any[]> {
+        let User = await RoleService.findAll();
+        return User;
+    },
+
      /**
      * @returns {Promise < any[] >}
      * @memberof RoleFacade

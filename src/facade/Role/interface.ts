@@ -10,6 +10,12 @@ export interface IRoleFacade {
      * @returns {Promise<any[]>}
      * @memberof IRoleFacade
      */
+    findAll(): Promise<any[]>;
+
+    /**
+     * @returns {Promise<any[]>}
+     * @memberof IRoleFacade
+     */
     create(role:RoleTo): Promise<RoleTo>;
 
 }

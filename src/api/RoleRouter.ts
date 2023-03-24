@@ -40,6 +40,42 @@ const router: Router = Router();
 router.post('/roles', RoleFacade.save)
 
 /**
+ * GET method route
+ * @example http://localhost:PORT/roles
+ * @swagger
+ * /roles/:
+ *  get:
+ *    description: Get all Roles
+ *    tags: ["Roles"]
+ *    responses:
+ *      200:
+ *        description: All Roles
+ *        content:
+ *          appication/json:
+ *            schema:
+ *              $ref: '#/components/schemas/RoleTo'
+ *      400:
+ *        description: Error bad parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ErrorTo'
+ * components:
+ *   schemas:
+ *     UserTO:
+ *       type: object
+ *       properties:
+ *         name:
+ *              type: string
+ *              example: rjaforever
+ *         email:
+ *              type: string
+ *              example: rjaforever@gmail.com
+ *              message: Users
+ */
+router.get('/roles/', RoleFacade.findAll);
+
+/**
  * @export {express.Router}
  */
 export default router;
