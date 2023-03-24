@@ -30,4 +30,10 @@ export interface IRoleFacade {
      */
     consumer(id: number): Promise<void>;
 
+    /**
+     * @returns {Promise<any[]>}
+     * @memberof IRoleFacade
+     */
+    update(id: number, role:RoleTo): Promise<void>;
+
 }

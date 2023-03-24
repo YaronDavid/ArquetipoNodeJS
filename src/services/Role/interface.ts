@@ -30,4 +30,10 @@ export interface IRoleService {
      * @memberof IRoleService
      */
      del(id: number): Promise<void>;
+
+     /**
+     * @returns {Promise<any[]>}
+     * @memberof IRoleService
+     */
+     update(id: number,role:RoleTo): Promise<void>;
 }

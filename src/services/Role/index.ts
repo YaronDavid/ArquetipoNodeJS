@@ -24,3 +24,10 @@ export async function create(role: RoleTo): Promise < RoleTo > {
 export async function del(id: number): Promise < void > {
     await RoleService.del(id);
 }
+/**
+ * @export
+ * @returns {Promise < any[] >}
+ */
+export async function update(id: number,role: RoleTo): Promise <void> {
+    await RoleService.update(id,role);
+}

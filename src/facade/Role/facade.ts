@@ -44,6 +44,14 @@ const RoleFacade: IRoleFacade = {
         await RoleService.del(id)
     },
 
+    /**
+     * @returns {Promise < any[] >}
+     * @memberof UserFacade
+     */
+    async update(id:number,user: RoleTo): Promise<void> {
+        await RoleService.update(id,user);
+    }
+
 }
 
 

@@ -108,7 +108,48 @@ router.get('/roles/', RoleFacade.findAll);
 
 router.delete('/roles/:id/id', RoleFacade.publish)
 
+/**
+ * PUT method route
+ * @example http://localhost:PORT/roles
+ * @swagger
+ * /roles/{id}/id:
+ *  put:
+ *    description: update Roles
+ *    tags: ["Roles"]
+ *    requestBody:
+ *      description: object roles
+ *      required: true
+ *      content:
+ *          application/json:
+ *            schema: 
+ *              $ref: '#/components/schemas/RoleTo'
+ *    parameters : [
+ *          {
+ *              name: 'id',
+ *              in: 'path',
+ *              schema: {
+ *                  type: number,
+ *                  example: 1
+ *              },
+ *              required: true
+ *          }
+ *    ]
+ *    responses:
+ *      200:
+ *        description: All Roles
+ *        content:
+ *          appication/json:
+ *            schema:
+ *              $ref: '#/components/schemas/RoleTo'
+ *      400:
+ *        description: Error bad parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ErrorTo'
+ */
 
+router.put('/roles/:id/id', RoleFacade.update)
 
 
 /**

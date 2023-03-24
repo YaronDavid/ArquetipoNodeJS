@@ -52,7 +52,7 @@ const UserFacade: IUserFacade = {
      */
     async update(id:number,user: UserTo): Promise<void> {
         await UserService.update(id,user);
-    },
+    }
     
 
 

@@ -117,6 +117,56 @@
             }
           }
         }
+      },
+      "put": {
+        "description": "update Roles",
+        "tags": [
+          "Roles"
+        ],
+        "requestBody": {
+          "description": "object roles",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleTo"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number",
+              "example": 1
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All Roles",
+            "content": {
+              "appication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleTo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/users/": {
@@ -201,8 +251,8 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number",
-              "example": 1
+              "type": "string",
+              "example": "1"
             },
             "required": true
           }

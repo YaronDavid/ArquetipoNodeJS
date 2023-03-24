@@ -54,6 +54,17 @@ const RoleService: IRoleService = {
         });
     },
 
+    /** 
+     * @returns {Promise < any[] >}
+     * @memberof RoleFacade
+     */
+    async update(id:number, role: RoleTo): Promise<void> {
+        await Role.update(role, {
+            where: {
+                id:id
+            }
+        });
+    }
 }
 
 export default RoleService;
