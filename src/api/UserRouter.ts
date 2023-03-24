@@ -21,7 +21,7 @@ const router: Router = Router();
  *        content:
  *          appication/json:
  *            schema:
- *              $ref: '#/components/schemas/UserTO'
+ *              $ref: '#/components/schemas/UserTo'
  *      400:
  *        description: Error bad parameters
  *        content:
@@ -44,10 +44,117 @@ const router: Router = Router();
 router.get('/users', UserFacade.findAll);
 
 /**
+ * POST method route
+ * @example http://localhost:PORT/users
+ * @swagger
+ * /users:
+ *  post:
+ *    description: create Users
+ *    tags: ["Users"]
+ *    requestBody:
+ *      description: object user
+ *      required: true
+ *      content:
+ *          application/json:
+ *            schema: 
+ *              $ref: '#/components/schemas/UserTo'
+ *    responses:
+ *      200:
+ *        description: All Users
+ *        content:
+ *          appication/json:
+ *            schema:
+ *              $ref: '#/components/schemas/UserTo'
+ *      400:
+ *        description: Error bad parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ErrorTo'
+ */
+
+router.post('/users', UserFacade.save)
+
+/**
+ * DELETE method route
+ * @example http://localhost:PORT/users
+ * @swagger
+ * /users/{id}/id:
+ *  delete:
+ *    description: delete Users
+ *    tags: ["Users"]
+ *    parameters : [
+ *          {
+ *              name: 'id',
+ *              in: 'path',
+ *              schema: {
+ *                  type: number,
+ *                  example: 1
+ *              },
+ *              required: true
+ *          }
+ *    ]
+ *    responses:
+ *      200:
+ *        description: All Users
+ *      400:
+ *        description: Error bad parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ErrorTo'
+ */
+
+router.delete('/users/:id/id', UserFacade.publish)
+
+/**
+ * PUT method route
+ * @example http://localhost:PORT/users
+ * @swagger
+ * /users/{id}/id:
+ *  put:
+ *    description: update Users
+ *    tags: ["Users"]
+ *    requestBody:
+ *      description: object user
+ *      required: true
+ *      content:
+ *          application/json:
+ *            schema: 
+ *              $ref: '#/components/schemas/UserTo'
+ *    parameters : [
+ *          {
+ *              name: 'id',
+ *              in: 'path',
+ *              schema: {
+ *                  type: number,
+ *                  example: 1
+ *              },
+ *              required: true
+ *          }
+ *    ]
+ *    responses:
+ *      200:
+ *        description: All Users
+ *        content:
+ *          appication/json:
+ *            schema:
+ *              $ref: '#/components/schemas/UserTo'
+ *      400:
+ *        description: Error bad parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ErrorTo'
+ */
+
+router.put('/users/:id/id', UserFacade.update)
+
+/**
  * GET method route
  * @example http://localhost:PORT/ping
  * @swagger
- * /ping/:
+ * /ping:
  *  get:
  *    description: Test service
  *    tags: ["Ping"]

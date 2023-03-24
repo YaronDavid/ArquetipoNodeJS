@@ -11,22 +11,33 @@
     }
   ],
   "apis": [
-    "C:\\Users\\Ricardo.Jimenez\\Documents\\workspace\\user-service\\src\\**\\**\\*.ts"
+    "C:\\Users\\Usuario\\Documents\\Node\\user-service\\src\\**\\**\\*.ts"
   ],
   "paths": {
-    "/users/": {
-      "get": {
-        "description": "Get all Users",
+    "/roles": {
+      "post": {
+        "description": "create Roles",
         "tags": [
-          "Users"
+          "Roles"
         ],
+        "requestBody": {
+          "description": "object role",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleTo"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "All Users",
+            "description": "All Roles",
             "content": {
               "appication/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserTO"
+                  "$ref": "#/components/schemas/RoleTo"
                 }
               }
             }
@@ -44,7 +55,162 @@
         }
       }
     },
-    "/ping/": {
+    "/users/": {
+      "get": {
+        "description": "Get all Users",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "All Users",
+            "content": {
+              "appication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "description": "create Users",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "description": "object user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserTo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All Users",
+            "content": {
+              "appication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}/id": {
+      "delete": {
+        "description": "delete Users",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number",
+              "example": 1
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All Users"
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update Users",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "description": "object user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserTo"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number",
+              "example": 1
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All Users",
+            "content": {
+              "appication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ping": {
       "get": {
         "description": "Test service",
         "tags": [
@@ -104,6 +270,41 @@
             "type": "string",
             "description": "Información sobre solución del error",
             "example": "http://info.com"
+          }
+        }
+      },
+      "RoleTo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Id of role",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of role",
+            "example": "Juan"
+          }
+        }
+      },
+      "UserTo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Id of user",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of user",
+            "example": "Juan"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of user",
+            "example": "Pablo@axity.com"
           }
         }
       }

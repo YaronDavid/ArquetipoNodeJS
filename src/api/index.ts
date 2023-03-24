@@ -3,6 +3,7 @@ import * as http from 'http';
 import * as swaggerUi from 'swagger-ui-express';
 import UserRouter from './UserRouter';
 import cors from 'cors';
+import RoleRouter from './RoleRouter'
 let swaggerDoc: Object;
 
 try {
@@ -37,6 +38,11 @@ export function init(app: express.Application): void {
      * @constructs
      */
     app.use('/', UserRouter);
+    /**
+     * @description Forwards any requests to the /auth URI to our AuthRouter
+     * @constructs
+     */
+    app.use('/', RoleRouter);
 
     /**
      * @description
